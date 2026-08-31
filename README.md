@@ -1,5 +1,7 @@
 # Editor de Sprites 8-BITS con Flet — CUL Electrónica Digital
 
+**Repo:** https://github.com/dacc-code/editor-sprites-8bits-flet — `git clone https://github.com/dacc-code/editor-sprites-8bits-flet.git`
+
 Proyecto académico: Editor de Sprites de 8×8 píxeles (64 bits) con Flet. Aplica sistemas de numeración Binario ↔ Hexadecimal con flujos de 64 bits sin pérdida de precisión.
 
 **Guía:** `Practica 2 Digital.pdf` (3 páginas) — Fases 1 a 4.
