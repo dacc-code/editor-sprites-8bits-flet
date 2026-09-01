@@ -275,7 +275,7 @@ def main(page: ft.Page):
                     controls=[
                         hex_input,
                         ft.ElevatedButton(
-                            text="Cargar Hex",
+                            content="Cargar Hex",
                             icon=ft.Icons.DOWNLOAD,
                             bgcolor="#38bdf8",
                             color="white",
