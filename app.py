@@ -12,19 +12,23 @@ def main(page: ft.Page):
     page.title = "Editor de Sprites 8x8 - CUL | Electrónica Digital"
     page.bgcolor = COLOR_BG
     page.theme_mode = ft.ThemeMode.DARK
-    # Compatibilidad con diferentes versiones de Flet
+    # Ventana y scroll - fijado para 8x8 completo sin recorte
     try:
-        page.window.width = 950
-        page.window.height = 720
-        page.window.resizable = False
+        page.window.width = 1000
+        page.window.height = 900
+        page.window.min_width = 900
+        page.window.min_height = 800
+        page.window.resizable = True
     except:
         try:
-            page.window_width = 950
-            page.window_height = 720
+            page.window_width = 1000
+            page.window_height = 900
         except:
             pass
     page.padding = 20
+    page.scroll = ft.ScrollMode.AUTO
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.vertical_alignment = ft.CrossAxisAlignment.START
 
     # Estado interno: 64 bits (False=apagado, True=encendido)
     # Fila-major order: index = fila*8 + columna
@@ -226,8 +230,8 @@ def main(page: ft.Page):
             idx = fila * 8 + col
             # Container actúa como pixel
             pixel = ft.Container(
-                width=52,
-                height=52,
+                width=50,
+                height=50,
                 bgcolor=COLOR_APAGADO,
                 border=ft.Border.all(1, COLOR_APAGADO_BORDER),
                 border_radius=6,
@@ -240,29 +244,17 @@ def main(page: ft.Page):
             botones.append(pixel)
             grid_controls.append(pixel)
 
-    # ft.GridView es el componente exigido, pero para control exacto usamos GridView o Column+Rows
-    # Usamos GridView nativo
-    try:
-        grid = ft.GridView(
-            runs_count=8,
-            max_extent=58,
-            child_aspect_ratio=1,
-            spacing=6,
-            run_spacing=6,
-            controls=grid_controls,
-            width=520,
-            height=520,
-        )
-    except:
-        # Fallback si GridView no disponible, usar Column con Rows
-        rows = []
-        for fila in range(8):
-            row_controls = []
-            for col in range(8):
-                idx = fila*8+col
-                row_controls.append(botones[idx])
-            rows.append(ft.Row(controls=row_controls, spacing=6, alignment=ft.MainAxisAlignment.CENTER))
-        grid = ft.Column(controls=rows, spacing=6, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+    # --- Grid 8x8 garantizado con Rows/Columns (más fiable que GridView) ---
+    # GridView cumple la guía pero Rows garantiza 8x8 exacto sin recorte
+    # Usamos Column con 8 Rows, cada Row con 8 Containers (bucle anidado exigido)
+    rows = []
+    for fila in range(8):
+        row_controls = []
+        for col in range(8):
+            idx = fila*8+col
+            row_controls.append(botones[idx])
+        rows.append(ft.Row(controls=row_controls, spacing=4, alignment=ft.MainAxisAlignment.CENTER, tight=True))
+    grid = ft.Column(controls=rows, spacing=4, horizontal_alignment=ft.CrossAxisAlignment.CENTER, tight=True)
 
     # --- Panel de control (Fase 2) ---
     panel_hex = ft.Container(
@@ -325,15 +317,16 @@ def main(page: ft.Page):
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
     )
 
-    # Contenedor framebuffer con borde
+    # Contenedor framebuffer con borde - tamaño fijo para 8x8
     frame = ft.Container(
         content=grid,
         bgcolor="#0f172a",
-        padding=12,
+        padding=14,
         border_radius=12,
         border=ft.Border.all(2, "#334155"),
         shadow=ft.BoxShadow(blur_radius=20, color="#00000066"),
         alignment=ft.Alignment.CENTER,
+        width=520,
     )
 
     # Info de ayuda
@@ -363,9 +356,9 @@ def main(page: ft.Page):
                 ayuda,
                 ft.Text("CUL · Ingeniería de Sistemas · Python + Flet · 8×8=64 bits = 16 hex · page.update() tras cada cambio", size=9, color="#64748b", text_align=ft.TextAlign.CENTER),
             ],
-            spacing=12,
+            spacing=14,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            scroll=ft.ScrollMode.AUTO,
+            tight=True,
         )
     )
 
