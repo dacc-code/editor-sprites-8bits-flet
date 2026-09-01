@@ -231,7 +231,7 @@ def main(page: ft.Page):
                 bgcolor=COLOR_APAGADO,
                 border=ft.Border.all(1, COLOR_APAGADO_BORDER),
                 border_radius=6,
-                alignment=ft.alignment.center,
+                alignment=ft.Alignment.CENTER,
                 data=idx,  # guardar índice para el handler
                 on_click=on_pixel_click,
                 ink=True,
@@ -333,7 +333,7 @@ def main(page: ft.Page):
         border_radius=12,
         border=ft.Border.all(2, "#334155"),
         shadow=ft.BoxShadow(blur_radius=20, color="#00000066"),
-        alignment=ft.alignment.center,
+        alignment=ft.Alignment.CENTER,
     )
 
     # Info de ayuda
