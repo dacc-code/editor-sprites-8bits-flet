@@ -115,7 +115,7 @@ def main(page: ft.Page):
             # btn es Container con on_click
             is_on = estado[i]
             btn.bgcolor = COLOR_ENCENDIDO if is_on else COLOR_APAGADO
-            btn.border = ft.border.all(1, COLOR_ENCENDIDO if is_on else COLOR_APAGADO_BORDER)
+            btn.border = ft.Border.all(1, COLOR_ENCENDIDO if is_on else COLOR_APAGADO_BORDER)
             # Añadir brillo si encendido
             btn.shadow = ft.BoxShadow(blur_radius=8, spread_radius=1, color="#22c55e55") if is_on else None
         # Refrescar
@@ -131,7 +131,7 @@ def main(page: ft.Page):
         estado[idx] = not estado[idx]
         is_on = estado[idx]
         e.control.bgcolor = COLOR_ENCENDIDO if is_on else COLOR_APAGADO
-        e.control.border = ft.border.all(1, COLOR_ENCENDIDO if is_on else COLOR_APAGADO_BORDER)
+        e.control.border = ft.Border.all(1, COLOR_ENCENDIDO if is_on else COLOR_APAGADO_BORDER)
         e.control.shadow = ft.BoxShadow(blur_radius=8, spread_radius=1, color="#22c55e55") if is_on else None
         grid.update()
         # Fase 3: Dirección 1 - Pantalla -> Hex
@@ -183,7 +183,7 @@ def main(page: ft.Page):
             estado[i] = False
             btn = botones[i]
             btn.bgcolor = COLOR_APAGADO
-            btn.border = ft.border.all(1, COLOR_APAGADO_BORDER)
+            btn.border = ft.Border.all(1, COLOR_APAGADO_BORDER)
             btn.shadow = None
         grid.update()
         actualizar_hex_output()
@@ -197,7 +197,7 @@ def main(page: ft.Page):
             btn = botones[i]
             is_on = estado[i]
             btn.bgcolor = COLOR_ENCENDIDO if is_on else COLOR_APAGADO
-            btn.border = ft.border.all(1, COLOR_ENCENDIDO if is_on else COLOR_APAGADO_BORDER)
+            btn.border = ft.Border.all(1, COLOR_ENCENDIDO if is_on else COLOR_APAGADO_BORDER)
             btn.shadow = ft.BoxShadow(blur_radius=8, spread_radius=1, color="#22c55e55") if is_on else None
         grid.update()
         actualizar_hex_output()
@@ -210,7 +210,7 @@ def main(page: ft.Page):
             estado[i] = True
             btn = botones[i]
             btn.bgcolor = COLOR_ENCENDIDO
-            btn.border = ft.border.all(1, COLOR_ENCENDIDO)
+            btn.border = ft.Border.all(1, COLOR_ENCENDIDO)
             btn.shadow = ft.BoxShadow(blur_radius=8, spread_radius=1, color="#22c55e55")
         grid.update()
         actualizar_hex_output()
@@ -229,7 +229,7 @@ def main(page: ft.Page):
                 width=52,
                 height=52,
                 bgcolor=COLOR_APAGADO,
-                border=ft.border.all(1, COLOR_APAGADO_BORDER),
+                border=ft.Border.all(1, COLOR_APAGADO_BORDER),
                 border_radius=6,
                 alignment=ft.alignment.center,
                 data=idx,  # guardar índice para el handler
@@ -311,7 +311,7 @@ def main(page: ft.Page):
         bgcolor=COLOR_CARD,
         padding=16,
         border_radius=12,
-        border=ft.border.all(1, "#334155"),
+        border=ft.Border.all(1, "#334155"),
         width=520,
     )
 
@@ -331,7 +331,7 @@ def main(page: ft.Page):
         bgcolor="#0f172a",
         padding=12,
         border_radius=12,
-        border=ft.border.all(2, "#334155"),
+        border=ft.Border.all(2, "#334155"),
         shadow=ft.BoxShadow(blur_radius=20, color="#00000066"),
         alignment=ft.alignment.center,
     )
