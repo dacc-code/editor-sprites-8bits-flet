@@ -23,7 +23,7 @@ python app.py
 # o: flet run app.py
 ```
 
-Se abre ventana desktop 950×720, tema oscuro, 8×8 framebuffer.
+Se abre ventana desktop (código: 1000×900, mínima 900×800, scroll AUTO), tema oscuro, 8×8 framebuffer.
 
 ## 🧩 Fases Implementadas
 
@@ -81,7 +81,9 @@ hex input → validación [0-9A-F] → zfill(64) → pinta 64 botones (hex→pan
 ├── index.html         # demo web estática
 ├── docs/index.html    # publicado en GitHub Pages
 ├── requirements.txt   # flet>=0.26.0
-└── README.md
+├── README.md          # documentación
+├── LICENSE            # MIT
+└── AGENTS.md           # instrucciones para agentes de IA
 ```
 
 ## 🧪 Testing

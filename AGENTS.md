@@ -19,7 +19,7 @@ Editor de sprites 8×8 (64 bits) para la materia Electrónica Digital (CUL). Dob
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt   # flet>=0.26.0 (sin pin)
-python app.py                     # desktop 950×720
+python app.py                     # desktop 1000×900 según código
 flet run app.py                   # alternativo
 ```
 
