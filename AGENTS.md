@@ -56,7 +56,7 @@ Sin linter, tests ni CI configurados.
 ## Testing / Lint / Build
 
 - Sin suite. Verificación mínima: `python app.py` abre ventana + toggle pixel actualiza hex; cargar `00FF00FF00FF00FF` pinta patrón.
-- TODO: tests de conversión pura (extraer función bin↔hex) + workflow CI (`pip install`, `python -m py_compile app.py`).
+- TODO: tests de conversión pura (extraer función bin↔hex). CI: `.github/workflows/ci.yml` (pip install + py_compile + import-check).
 - No instalar toolchains pesados (equipo limitado, `/` al 87% el 2026-09-10).
 
 ## Deployment
