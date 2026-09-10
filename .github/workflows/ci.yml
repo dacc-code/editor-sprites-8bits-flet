@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Compile check
+        run: python -m py_compile app.py
+
+      - name: Import check (no ejecuta la GUI)
+        # app.py tiene guardia __main__: importar no debe lanzar ft.app
+        # (antes colgaba el CI). La lógica vive en main(): TODO extraerla
+        # a funciones de módulo para testearla.
+        run: |
+          python - <<'EOF'
+          import app as m
+          assert callable(m.main), "falta main(page)"
+          print("import OK: sin GUI, con main()")
+          EOF

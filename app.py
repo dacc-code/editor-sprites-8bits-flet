@@ -365,4 +365,5 @@ def main(page: ft.Page):
     # Inicializar salida
     actualizar_hex_output()
 
-ft.app(target=main)
+if __name__ == "__main__":
+    ft.app(target=main)
