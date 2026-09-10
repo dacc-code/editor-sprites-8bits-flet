@@ -1,5 +1,10 @@
 # Editor de Sprites 8-BITS con Flet — CUL Electrónica Digital
 
+![Python](https://img.shields.io/badge/python-3.x-blue.svg?style=flat&logo=python&logoColor=white)
+![Flet](https://img.shields.io/badge/flet-0.26+-purple.svg?style=flat)
+![GitHub Pages](https://img.shields.io/badge/demo-GitHub_Pages-green.svg?style=flat)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 **✅ DEMO EN VIVO (Gratis, sin pago): https://dacc-code.github.io/editor-sprites-8bits-flet/**
 
 **Repo:** https://github.com/dacc-code/editor-sprites-8bits-flet — `git clone https://github.com/dacc-code/editor-sprites-8bits-flet.git`
@@ -18,7 +23,7 @@ python app.py
 # o: flet run app.py
 ```
 
-Se abre ventana desktop 950×720, tema oscuro, 8×8 framebuffer.
+Se abre ventana desktop (código: 1000×900, mínima 900×800, scroll AUTO), tema oscuro, 8×8 framebuffer.
 
 ## 🧩 Fases Implementadas
 
@@ -54,3 +59,47 @@ Incluye `app.py`, `requirements.txt`. Compatible Python 3.x + Flet.
 
 - Calculadora conversiones (Flask): https://github.com/dacc-code/calculadora-conversiones-cul
 - Demo estática: https://dacc-code.github.io/calculadora-conversiones-cul/
+
+## 🧱 Stack y arquitectura
+
+| Capa | Tecnología |
+|------|------------|
+| App desktop | Python + Flet (`app.py`) |
+| Demo web | HTML estático (`index.html`, `docs/`) |
+| Deploy demo | GitHub Pages |
+| Deps | `requirements.txt` (`flet>=0.26.0`) |
+
+```text
+click pixel → estado[64] → binario 64 chars → hex 16 chars (pantalla→hex)
+hex input → validación [0-9A-F] → zfill(64) → pinta 64 botones (hex→pantalla)
+```
+
+## 📁 Estructura
+
+```text
+├── app.py             # app Flet (framebuffer 8×8 + conversión bidireccional)
+├── index.html         # demo web estática
+├── docs/index.html    # publicado en GitHub Pages
+├── requirements.txt   # flet>=0.26.0
+├── README.md          # documentación
+├── LICENSE            # MIT
+└── AGENTS.md           # instrucciones para agentes de IA
+```
+
+## 🧪 Testing
+
+Sin suite automatizada. Verificación manual:
+
+1. `python app.py`, toggle un pixel → el hex cambia.
+2. Cargar `00FF00FF00FF00FF` → se pinta el patrón esperado.
+3. Input inválido (ej. `ZZZZ`) → TODO: documentar comportamiento actual.
+
+- TODO: extraer conversión bin↔hex a funciones testeables + CI con `py_compile`.
+
+## 🔒 Seguridad
+
+Sin backend, sin credenciales, sin dependencias de red en runtime. No commitear `.env` (ignorado).
+
+## 📄 Licencia
+
+MIT — ver [LICENSE](LICENSE).
